@@ -1,11 +1,8 @@
-### Output
+## Execution Flow
+Execution begins at `_start`, where `call work` transfers control to the function and saves the return address on the stack. Inside `work`, `push rbp` saves the previous frame pointer, while `mov rbp, rsp` establishes a new stack frame. The program reserves 16 bytes for local variables, stores 100 and 200 and loads them into RAX and RBX. It then restores the stack frame and returns to `_start`, where the program exits.
 
-(no terminal output)
+## Stack Operations
+`call work` decreases RSP by 8 bytes and `push rbp` decreases it by another 8 bytes. `sub rsp, 16` reserves space for local variables. Storing and reading these variables does not change RSP. `mov rsp, rbp` releases the reserved space, `pop rbp` increases RSP by 8 bytes, and `ret` increases it by another 8 bytes while retrieving the return address. RSP returns to its original position.
 
-
-The program executes successfully without displaying anything on the terminal.
-
-Explanation:
-The program calls a function named work, creates a stack frame and reserves 16 bytes for two local variables. It stores 100 and 200 in stack memory, then retrieves them into RAX and RBX respectively. The stack frame is cleaned up before the function returns.
-
-The program terminates successfully with exit status 0.
+## Execution Observations
+The program executed successfully without terminal output. The local variables were stored and retrieved correctly before the function returned.

@@ -1,10 +1,8 @@
-### Program 06: Expected Output
+## Execution Flow
+Execution begins at `_start`, where `0x11223344` is loaded into EAX and `0x1234` into EBX. Both values are pushed onto the stack and then retrieved using `pop ebx` and `pop eax`. The values return to their original registers before the program exits.
 
-(no terminal output)
+## Stack Operations
+`push eax` decreases ESP by 4 bytes, and `push ebx` decreases it by another 4 bytes. `pop ebx` retrieves `0x1234`, increasing ESP by 4 bytes. `pop eax` retrieves `0x11223344`, increasing ESP by another 4 bytes. ESP returns to its original position, demonstrating LIFO behaviour.
 
-The program executes successfully without displaying anything on the terminal.
-
-Explanation:
-The program demonstrates 32-bit stack operations using PUSH and POP. It initializes EAX with 0x11223344 and EBX with 0x1234, then pushes both values onto the stack. Following the LIFO principle, the values are retrieved in reverse order: EBX receives 0x1234 and EAX receives 0x11223344.
-
-The program terminates successfully using the 32-bit Linux system call int 0x80 with exit status 0.
+## Execution Observations
+The program executed successfully using the 32-bit format without terminal output. Both hexadecimal values were restored to their original registers. Each PUSH and POP operation handled 4 bytes.

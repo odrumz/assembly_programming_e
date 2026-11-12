@@ -1,11 +1,8 @@
-### Output
+## Execution Flow
+Execution begins at `_start`, where `call work` saves the return address and transfers execution to the function. `push ebp` saves the previous frame pointer and `mov ebp, esp` establishes a new stack frame. The program reserves 8 bytes, stores 100 and 200 as local variables and loads them into EAX and EBX. It then restores the stack frame, returns to `_start` and exits using the 32-bit Linux system call.
 
+## Stack Operations
+`call work` decreases ESP by 4 bytes, while `push ebp` decreases it by another 4 bytes. `sub esp, 8` reserves space for local variables. Storing and reading the variables does not change ESP. `mov esp, ebp` releases the reserved space, `pop ebp` increases ESP by 4 bytes and `ret` increases it by another 4 bytes while retrieving the return address. ESP returns to its original position.
 
-(no terminal output)
-
-The program executes successfully without displaying anything on the terminal.
-
-Explanation:
-The program demonstrates 32-bit stack frame management. It calls a function named work, saves the previous base pointer and reserves 8 bytes of stack memory for two local variables (100 and 200). These values are retrieved into EAX and EBX respectively. The stack frame is then cleaned up and the function returns to the main program.
-
-The program terminates successfully using the 32-bit Linux system call `int 0x80` with exit status 0.
+## Execution Observations
+The program executed successfully using the 32-bit format without displaying terminal output. The local variables were stored and retrieved correctly before the function returned.
